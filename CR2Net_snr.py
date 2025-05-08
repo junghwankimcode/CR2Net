@@ -6,7 +6,6 @@ from numpy.linalg import svd
 from scipy.stats import skew, kurtosis
 import matplotlib.pyplot as plt
 
-# CUDA 설정
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Parameters
