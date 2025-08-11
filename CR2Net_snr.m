@@ -19,7 +19,7 @@ iterMax = 30;
 
 subcarrier_badwidth=60*1e3;
 subcarrier_spacing=15;
-excess_delay=unifrnd(0,1e-6);
+maxexcess_delay=1e-6;
 
 
 for indexN = 1:length(trainSNRVec)
@@ -46,7 +46,7 @@ parfor k=1:TrainSet
 
     whoRU = randi(2,1);
       IT = (randn(1,trainDoF) + 1i*randn(1,trainDoF));
-      CR = exp(-1i*(pi*2)*(excess_delay)*(subcarrier_badwidth)*(subcarrier_spacing)*rand(1,trainDoF));
+      CR = exp(-1i*(pi*2)*(maxexcess_delay)*(subcarrier_badwidth)*(subcarrier_spacing)*rand(1,trainDoF));
       xx = (IT * transpose(CR).^([0:P-1]));
     xx = xx / norm(xx);
 
@@ -109,7 +109,7 @@ parfor k=1:TestSet
    whoRU = randi(2,1);
      testSNR  = trainSNR + rand(1)*SNRmargin - SNRmargin/2;
       IT = (randn(1,testDoF) + 1i*randn(1,testDoF));
-      CR = exp(-1i*(pi*2)*(excess_delay)*(subcarrier_badwidth)*(subcarrier_spacing)*rand(1,testDoF));
+      CR = exp(-1i*(pi*2)*(maxexcess_delay)*(subcarrier_badwidth)*(subcarrier_spacing)*rand(1,testDoF));
       xx = (IT * transpose(CR).^([0:P-1]));
     xx = xx / norm(xx);
 
